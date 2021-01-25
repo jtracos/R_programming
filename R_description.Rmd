@@ -4,18 +4,50 @@ author: "j"
 date: "25/1/2021"
 output: html_document
 ---
-  
-  ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+*factor* permite crear datos categoricos.
+```{r factor1, echo = TRUE}
+x <- factor(c("LUNES","MARTES","LUNES", "LUNES"))
+print(x)
+```
+# 1.- factor attributes
+
+```{r factor2, echo = TRUE}
+x <- factor(c("LUNES","MARTES","LUNES", "LUNES"), levels = c("LUNES", "MARTES"))
+print(x)
+```
+categorizados por R:
+
+```{r table, echo = TRUE}
+table(x)
 ```
 
-## R Markdown
-
-Con R se puede crear documentos bonitos que incluyen código.
-```{r matrix, echo = TRUE}
-a_mat<-matrix(ncol = 3, nrow = 4)
-print(a_mat)
+## Attributes levels
+Get numeric distinctions:
+```{r unclass, echo=TRUE}
+unclass(x)
 ```
+or get attributes:
+```{r attributes, echo= FALSE}
+attr(x,"levels")
+```
+
+# 2. Matrices
+
+## crear una matriz
+```{r matriz}
+m = 1:12
+#reshape
+dim(m) <-c(3,4)
+print(m)
+```
+
+# 3. writing data
+```{r dput}
+dput(x, file = "Data.R")
+```
+
+
+## Data frames
 se pueden crear **data frames** con matrices:
   
   ```{r a_mat, echo = TRUE}
@@ -29,3 +61,8 @@ print(df)
 attributes(df)$names <- c("VAR1","VAR2","VAR3")
 print(df)
 ```
+o
+```{r names, echo = FALSE}
+names(df)<- c("I1","I2", "I3")
+```
+
