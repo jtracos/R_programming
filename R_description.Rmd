@@ -1,0 +1,31 @@
+---
+  title: "R Description"
+author: "j"
+date: "25/1/2021"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Con R se puede crear documentos bonitos que incluyen código.
+```{r matrix, echo = TRUE}
+a_mat<-matrix(ncol = 3, nrow = 4)
+print(a_mat)
+```
+se pueden crear **data frames** con matrices:
+  
+  ```{r a_mat, echo = TRUE}
+df <- data.frame(a_mat)
+print(df)
+```
+
+## Change attributes names
+
+```{r attributes, echo=TRUE}
+attributes(df)$names <- c("VAR1","VAR2","VAR3")
+print(df)
+```
