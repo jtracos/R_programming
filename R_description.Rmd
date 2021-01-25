@@ -1,9 +1,10 @@
 ---
-  title: "R Description"
+title: "R Description"
 author: "j"
 date: "25/1/2021"
 output: html_document
 ---
+
 *factor* permite crear datos categoricos.
 ```{r factor1, echo = TRUE}
 x <- factor(c("LUNES","MARTES","LUNES", "LUNES"))
@@ -27,7 +28,7 @@ Get numeric distinctions:
 unclass(x)
 ```
 or get attributes:
-```{r attributes, echo= FALSE}
+```{r attr, echo= FALSE}
 attr(x,"levels")
 ```
 
@@ -51,6 +52,7 @@ dput(x, file = "Data.R")
 se pueden crear **data frames** con matrices:
   
   ```{r a_mat, echo = TRUE}
+a_mat <- matrix(1:12, ncol = 3)
 df <- data.frame(a_mat)
 print(df)
 ```
@@ -58,7 +60,7 @@ print(df)
 ## Change attributes names
 
 ```{r attributes, echo=TRUE}
-attributes(df)$names <- c("VAR1","VAR2","VAR3")
+names(df) <- c("VAR1","VAR2","VAR3")
 print(df)
 ```
 o
