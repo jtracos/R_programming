@@ -1,0 +1,77 @@
+---
+title: "Quizz Course 2 Week 1"
+author: "jtracos"
+date: "25/1/2021"
+output: html_document
+---
+# Obtaining the data
+We got the data from coursera. The dataset contains weather records from somewhere location; we need get knowledge
+of data:
+```{r getdata, echo=FALSE}
+#source("../Data/scripts/Analisis_Descriptivo_MetDatos.R", echo = FALSE)
+
+```
+## Preparing Filtering(I)
+We made three function to analyze the data, for filtering, mainly
+  
+1:We need to know the max and mean of data on *Ozone > 31* and *Temp >90*. 
+```{r}
+getDataClean<- function(data)
+  {
+  ## funcion para obtener los valores que cumplen con las condiciones
+  # count lost data on Ozone
+  n_na <- is.na(data$Ozone)
+  print("# NA on Ozone Attr:")
+  print(sum(n_na==TRUE))
+  # get complete data
+  cond1 <- data$Ozone>31
+  cond2 <- data$Temp>90
+  #condition to apply
+  good <- cond1 || cond2
+  return( data[good,])
+}
+```
+and  2 and 3: Basically, to filter data based on a particular month and get the summary
+```{r}
+getDatabyMonth <- function(data, month)
+  {
+  #attach(data)
+  idx <- data$Month == month
+  return(data[idx,])
+}
+showResults<-function(data)
+  {
+  print("summary of selected data:")
+  print(summary(data))
+}
+```
+## Carga de datos
+
+
+Now, we load and apply the function to get the data summary
+
+```{r readdata, echo=TRUE}
+path ="../Data/hw1_data.csv"
+rough_data <- read.csv(path)
+good <- complete.cases(rough_data)
+clean_data = rough_data[good,]
+data_month6 <- getDatabyMonth(clean_data, month = 6)
+data_month5 <- getDatabyMonth(clean_data, month = 5)
+```
+We got the results for the fifth month:
+```{r mayo, echoTRUE}
+showResults(data_month5)
+```
+And, for the sixth month:
+```{r junio, echoTRUE}
+showResults(data_month6)
+```
+wait... What happened with the first function??!!
+well... These are the stats from the subset belonging to when *Ozone greater than 31* or *Temperature greater than 90*
+```{r summarycond, echo= TRUE}
+data_filt <- getDataClean(rough_data)
+```
+```{r}
+showResults(data_filt)
+```
+
