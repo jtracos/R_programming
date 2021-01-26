@@ -14,6 +14,7 @@ getDataClean<- function(dir)
   good <- cond1 && cond2
   return( quiz_data[good,])
 }
+
 getDatabyMonth <- function(dir, month)
   {
   data <- read.csv(dir)
@@ -21,11 +22,14 @@ getDatabyMonth <- function(dir, month)
   idx <- data$Month == month
   return(data[idx,])
 }
+
 showResults<-function(data)
   {
   print("summary of selected data:")
   print(summary(data))
 }
+
+
 path <- "Data/hw1_data.csv"
 data_month6 <- getDatabyMonth(path,month = 6)
 
