@@ -42,13 +42,13 @@ rankhospital <- function(state, outcome, num) {
   
   if (is.character(num)){
     if (num == "worst"){
-      num <- length(state_data[,1])
+      num <- length(outcome_data)
     }else if(num == "best"){
       num <- 1
     }else{
       stop("invalid input")
     }
-  }else if (num >length(state_data[,1])){
+  }else if (num >length(outcome_data)){
     return(NA)
   }
   
