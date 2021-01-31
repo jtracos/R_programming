@@ -27,3 +27,12 @@ xpathSApply(parsedhtml,"//title", xmlValue)
 ## Pages with password
 url.dir <- ""
 page <- GET(url.dir, authenticate("user", password = "") )
+
+
+## Connecting api with keys
+## creating the app auth
+myapp <- oauth_app("twitter", 
+                   key = "", secret = "")
+sig = sign_oauth1.0(myapp, token = "",
+                    token_secret = "" )
+homeTL =GET("https://api.twitter.com/1.1/statuses/home_timeline.json", sig)
